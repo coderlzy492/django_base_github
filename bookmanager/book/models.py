@@ -27,7 +27,7 @@ mapping是一种程序设计技术,用于实现面向对象编程语言里不同
 class BookInfo(models.Model):
     """
     book_name:      书本名(设置不重复)
-    pub_date:       出版日期(设置可为空)
+    pub_date:       出版日期(允许为空)
     read_count:     阅读量(默认值为0)
     comment_count:  评论量(默认值为0)
     is_delete:      是否删除(默认值为否)
@@ -36,7 +36,7 @@ class BookInfo(models.Model):
     pub_date = models.DateField(null=True)
     read_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default=0)
-    is_delete = models.BooleanField(default=False)
+    book_is_delete = models.BooleanField(default=False)
 
     class Meta:
         """
@@ -50,11 +50,32 @@ class BookInfo(models.Model):
 
 class CharacterInfo(models.Model):
     """
-    character_name:   人物名
-    character_gender:   人物性别
+    character_name:         人物名(设置不重复)
+    character_gender:       人物性别(定义一个有序字典)
+    character_description:  人物描述(允许为空)
+    character_is_delete:    是否删除(默认值为否)
     book:   设置外键
     """
-    character_name = models.CharField(max_length=10)
-    character_gender = models.BooleanField()
-    # 外键约束: 人物属于某一本书
+    GENDER_CHOICE = (
+        (1, 'male'),
+        (2, 'female')
+    )
+    character_name = models.CharField(max_length=10, unique=True)
+    character_gender = models.SmallIntegerField(choices=GENDER_CHOICE, default=1)
+    character_description = models.CharField(max_length=100, null=True)
+    character_is_delete = models.BooleanField(default=False)
+
+    # 外键约束: 人物属于某一本书,系统会自动为外键添加下划线id
+    # 外键的级联操作:
+    # 主表 & 从表
+    # 主表删除一条数据,从表中有关联的数据有哪些操作??
     book = models.ForeignKey(BookInfo, on_delete=models.CASCADE)
+
+    class Meta:
+        """
+        修改表名称
+        """
+        db_table = 'characterinfo'
+
+    def __str__(self):
+        return self.character_name
