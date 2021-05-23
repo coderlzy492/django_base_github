@@ -6,4 +6,18 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse('OK~')
+    # return HttpResponse('OK~')
+
+    """
+
+    :param request:
+    :return:
+    """
+    # 模拟一次数据查询
+    context = {
+        'name': 'Denver Nuggets'
+    }
+
+    return render(request=request,
+                  template_name='book/index.html',
+                  context=context)
