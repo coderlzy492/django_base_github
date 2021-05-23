@@ -19,6 +19,9 @@ class BookInfo(models.Model):
     """
     book_name = models.CharField(max_length=10)
 
+    def __str__(self):
+        return self.book_name
+
 
 class CharacterInfo(models.Model):
     """
