@@ -9,7 +9,10 @@ def index(request):
     # return HttpResponse('OK~')
 
     """
+    templates_name: 模板文件名
+    context:        视图中的数据传递给模板
 
+    templates/book/index.html中采用{{变量名}}的形式来接收并展示数据
     :param request:
     :return:
     """
