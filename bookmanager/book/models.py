@@ -30,7 +30,7 @@ class BookInfo(models.Model):
     pub_date:       出版日期(允许为空)
     read_count:     阅读量(默认值为0)
     comment_count:  评论量(默认值为0)
-    is_delete:      是否删除(默认值为否)
+    book_is_delete:      是否删除(默认值为否)
     """
     book_name = models.CharField(max_length=10, unique=True)
     pub_date = models.DateField(null=True)
