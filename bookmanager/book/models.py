@@ -31,6 +31,9 @@ class BookInfo(models.Model):
     read_count:     阅读量(默认值为0)
     comment_count:  评论量(默认值为0)
     book_is_delete:      是否删除(默认值为否)
+
+    Notes:
+        一对多的关系模型中,系统会为我们自动添加一个关系模型类名小写_set
     """
     book_name = models.CharField(max_length=10, unique=True)
     pub_date = models.DateField(null=True)
