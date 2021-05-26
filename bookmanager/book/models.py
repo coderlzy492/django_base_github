@@ -35,7 +35,7 @@ class BookInfo(models.Model):
     Notes:
         一对多的关系模型中,系统会为我们自动添加一个关系模型类名小写_set
     """
-    book_name = models.CharField(max_length=10, unique=True)
+    book_name = models.CharField(max_length=10, unique=False)
     pub_date = models.DateField(null=True)
     read_count = models.IntegerField(default=0)
     comment_count = models.IntegerField(default=0)
