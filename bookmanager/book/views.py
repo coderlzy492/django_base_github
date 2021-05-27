@@ -38,6 +38,18 @@ def create_book(request):
     )
 
     return HttpResponse('Done!!')
+
+
+def shop(request, province_id, city_id):
+    """
+    shop函数
+    :param request:
+    :param province_id: 省份
+    :param city_id: 城市
+    :return:
+    """
+    return HttpResponse('新店开业~🎉')
+
 # # Method1:insert
 # from book.models import BookInfo
 # book0 = BookInfo(book_name='射雕英雄传',
