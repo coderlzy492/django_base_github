@@ -64,6 +64,11 @@ def shop(request, province_id, city_id):
 
 
 def register(request):
+    """
+    postman中模拟传入form-data类型数据
+    :param request:
+    :return:
+    """
 
     data = request.POST
     print(data)
@@ -72,6 +77,11 @@ def register(request):
 
 
 def register_json(request):
+    """
+    postman中模拟传入JSON类型数据
+    :param request:
+    :return:
+    """
 
     body = request.body
     print(body)
