@@ -5,5 +5,5 @@ urlpatterns = [
     # path(路由, 视图函数)
     path('index/', index),
     path('create/', create_book),
-    path('<province_id>/<city_id>', shop)
+    path('<province_id>/<city_id>/', shop)
 ]
