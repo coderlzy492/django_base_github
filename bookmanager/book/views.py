@@ -48,6 +48,18 @@ def shop(request, province_id, city_id):
     :param city_id: 城市
     :return:
     """
+
+    query_params = request.GET
+    # print(query_params)
+
+    # getlist方法用于一键多值的情况
+    header = query_params.getlist('product_name')
+
+    # get方法用于获取单个键的值
+    # header = query_params.get('product_name')
+
+    print(f'返回的value:{header}')
+
     return HttpResponse('新店开业~🎉')
 
 # # Method1:insert
