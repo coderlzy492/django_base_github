@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.http import HttpResponse
+from book.models import BookInfo, CharacterInfo
 
 # Create your views here.
 
@@ -25,6 +26,18 @@ def index(request):
                   template_name='book/index.html',
                   context=context)
 
+
+def create_book(request):
+
+    book = BookInfo.objects.create(
+        book_name='QA之道',
+        pub_date='2008-05-18',
+        read_count=288,
+        comment_count=199,
+        book_is_delete=0
+    )
+
+    return HttpResponse('Done!!')
 # # Method1:insert
 # from book.models import BookInfo
 # book0 = BookInfo(book_name='射雕英雄传',
