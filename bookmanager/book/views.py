@@ -62,6 +62,28 @@ def shop(request, province_id, city_id):
 
     return HttpResponse('新店开业~🎉')
 
+
+def register(request):
+
+    data = request.POST
+    print(data)
+
+    return HttpResponse('Good job!!!')
+
+
+def register_json(request):
+
+    body = request.body
+    print(body)
+
+    body_str = body.decode('utf-8')
+    print(body_str)
+
+    import json
+    body_dict = json.loads(body)
+    print(body_dict)
+
+    return HttpResponse('Hey')
 # # Method1:insert
 # from book.models import BookInfo
 # book0 = BookInfo(book_name='射雕英雄传',
