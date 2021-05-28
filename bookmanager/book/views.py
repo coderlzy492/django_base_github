@@ -60,7 +60,12 @@ def shop(request, province_id, city_id):
 
     print(f'返回的value:{header}')
 
-    return HttpResponse('新店开业~🎉')
+    return HttpResponse('新店即将开业,敬请期待~🎉')
+
+
+def register_mobile(request, phone):
+
+    return HttpResponse('尊敬的用户,您的手机号已在本平台完成注册~🎉')
 
 
 def register(request):
@@ -84,14 +89,17 @@ def register_json(request):
     """
 
     body = request.body
-    print(body)
+    # print(body)
 
-    body_str = body.decode('utf-8')
-    print(body_str)
+    body_str = body.decode()
+    # print(body_str)
 
     import json
     body_dict = json.loads(body)
-    print(body_dict)
+    print(body_dict, type(body_dict))
+
+    header = request.META
+    print(header, type(header))
 
     return HttpResponse('Hey')
 # # Method1:insert
