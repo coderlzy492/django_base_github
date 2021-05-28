@@ -102,6 +102,30 @@ def register_json(request):
     # print(header, type(header))
 
     return HttpResponse('Return JSON success~')
+
+
+def response(request):
+    """
+    定义response查看接口响应
+    :param request:
+    :return: 包含的status字段定义了返回状态码
+
+        1xx:(消息)
+        2xx:(成功)
+            200:OK
+        3xx:(重定向)
+        4xx:(请求有问题)
+            404:找不到页面   -->路由问题                                                                               路由有问题
+            403:禁止访问    -->权限问题
+        5xx:(服务器有问题)
+    """
+    res = HttpResponse('Return response successfully~', status=200)
+
+    # 设置响应头的信息
+    res['name'] = 'itcast'
+
+    return res
+
 # # Method1:insert
 # from book.models import BookInfo
 # book0 = BookInfo(book_name='射雕英雄传',
