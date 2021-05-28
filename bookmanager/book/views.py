@@ -78,7 +78,7 @@ def register(request):
     data = request.POST
     print(data)
 
-    return HttpResponse('Good job!!!')
+    return HttpResponse('Return form-data success~')
 
 
 def register_json(request):
@@ -99,9 +99,9 @@ def register_json(request):
     print(body_dict, type(body_dict))
 
     header = request.META
-    print(header, type(header))
+    # print(header, type(header))
 
-    return HttpResponse('Hey')
+    return HttpResponse('Return JSON success~')
 # # Method1:insert
 # from book.models import BookInfo
 # book0 = BookInfo(book_name='射雕英雄传',
