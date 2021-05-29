@@ -1,6 +1,7 @@
 from django.urls import path
 from django.urls.converters import register_converter
-from book.views import index, create_book, shop, register_mobile, register, register_json, response
+from book.views import index, create_book, shop, register_mobile, register, register_json, response, response_info, \
+    redirect_url
 
 
 # 1.自定义手机号验证转换器
@@ -38,5 +39,7 @@ urlpatterns = [
     path('<int:province_id>/<int:city_id>', shop),
     path('register/', register),
     path('register_json/', register_json),
-    path('response/', response)
+    path('response/', response),
+    path('response/info', response_info),
+    path('redirects/', redirect_url)
 ]
