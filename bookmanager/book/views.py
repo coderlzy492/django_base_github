@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpRequest
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
+from django.shortcuts import render, redirect
 from book.models import BookInfo, CharacterInfo
 
 # Create your views here.
@@ -125,6 +125,26 @@ def response(request):
     res['name'] = 'itcast'
 
     return res
+
+
+def response_info(request):
+
+    import json
+
+    info = {
+        'Department': 'Lark QA-Video Conference',
+        'Email': 'lvzhenyang@bytedance.com',
+        'City': 'Shanghai'
+    }
+
+    json_none_dict = json.dumps(info)
+    print(f'返回数据:{json_none_dict},类型为:{type(json_none_dict)}')
+    return JsonResponse(data=json_none_dict, safe=False)
+
+
+def redirect_url(request):
+
+    return redirect('http://www.itcast.cn/')
 
 # # Method1:insert
 # from book.models import BookInfo
