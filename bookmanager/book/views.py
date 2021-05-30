@@ -166,7 +166,8 @@ def set_cookies(request):
     # 2.服务器设置Cookie信息,通过响应对象set_cookie信息
     response = HttpResponse('set_cookies')
 
-    response.set_cookie(key='username', value=username)
+    # 3.max_age表示秒数,从响应开始,计数的秒数
+    response.set_cookie(key='username', value=username, max_age=60*60)
 
     return response
 
@@ -185,6 +186,44 @@ def get_cookies(request):
     return HttpResponse(username)
 
     # return HttpResponse('get cookies successfully~')
+
+
+def set_sessions(request):
+    """
+    第一次在服务器端设置session信息,服务器会生成一个带有session🆔的Cookie信息
+    浏览器接收到该信息后,将Cookie信息保存起来
+    第二次及以后每次请求都会携带这个session🆔并做校验,验证无误则执行业务逻辑
+    :param request:
+    :return:
+    """
+
+    # 1.获取username
+    user_name = request.GET.get('username')
+
+    # 2.设置session信息
+    """
+    假设我们通过模型查询得到了用户的信息    
+    """
+    user_id = 1
+    request.session['user_id'] = user_id
+    request.session['user_name'] = user_name
+
+    return HttpResponse('set sessions successfully~')
+
+
+def get_sessions(request):
+
+    user_id = request.session['user_id']
+    user_name = request.session['user_name']
+
+    # 在获取字典数据的时候尽量使用get方法,可以减少异常的发生(ousfzv5th4n4xgygxn4h9mq5qlcgc3g5)
+    # user_id = request.session.get('user_id')
+    # user_name = request.session.get('user_name')
+
+    content = '{},{}'.format(user_id, user_name)
+
+    return HttpResponse(content)
+
 # # Method1:insert
 # from book.models import BookInfo
 # book0 = BookInfo(book_name='射雕英雄传',
