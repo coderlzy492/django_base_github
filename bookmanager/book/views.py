@@ -146,6 +146,45 @@ def redirect_url(request):
 
     return redirect('http://www.itcast.cn/')
 
+
+def set_cookies(request):
+    """
+    第一次请求携带查询内容,
+    服务器接收到请求后获取username,
+    服务器设置Cookie信息,包括username & password
+
+    浏览器接收到服务器的响应后,保存Cookie
+    用户第二次及以后每次访问同样的域名,都会携带Cookie信息来判断用户身份
+    :param request:
+    :return:
+    """
+
+    # 1.获取查询字符串信息
+    username = request.GET.get('username')
+    password = request.GET.get('password')
+
+    # 2.服务器设置Cookie信息,通过响应对象set_cookie信息
+    response = HttpResponse('set_cookies')
+
+    response.set_cookie(key='username', value=username)
+
+    return response
+
+    # return HttpResponse('set cookies successfully~')
+
+
+def get_cookies(request):
+
+    # 1.获取Cookie,字典类型数据
+    print(request.COOKIES)
+
+    # 2.获取Cookie中的某个字段信息
+    username = request.COOKIES['username']
+    # print(username)
+
+    return HttpResponse(username)
+
+    # return HttpResponse('get cookies successfully~')
 # # Method1:insert
 # from book.models import BookInfo
 # book0 = BookInfo(book_name='射雕英雄传',
