@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
+from django.views import View
+# from django.views.generic import View
 from book.models import BookInfo, CharacterInfo
 
 # Create your views here.
@@ -223,6 +225,31 @@ def get_sessions(request):
     content = '{},{}'.format(user_id, user_name)
 
     return HttpResponse(content)
+
+
+def login(request):
+
+    # print(request.method)
+    if request.method == "GET":
+
+        return HttpResponse('GET逻辑~')
+    else:
+        return HttpResponse('POST逻辑~')
+
+
+class LoginView(View):
+    """
+    1.类视图继承自View
+    2.类视图中的方法是采用Http方法小写来区分不同的请求方式
+    """
+
+    def get(self, request):
+
+        return HttpResponse('GET逻辑~')
+
+    def post(self, request):
+
+        return HttpResponse('POST逻辑~')
 
 # # Method1:insert
 # from book.models import BookInfo
