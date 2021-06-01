@@ -253,15 +253,36 @@ class LoginView(View):
         return HttpResponse('POST逻辑~')
 
 
-class MyOrderView(View):
+class MyOrderView(LoginRequiredMixin, View):
     """
     我的订单视图类
     1.已登陆用户---->可以访问
     2.未登陆用户---->无法访问，跳转登陆
 
+
+    如何定义用户是否登陆??
+    我们以登陆后台站点判断是否登陆
+
+    我们这里使用等同于装饰器的另一种方法(多继承)
+
+    Python,C++
+
+    多继承继承多个父类
+
+    LoginRequiredMixin内部会进行用户是否登陆的判断(登陆默认的admin站点)
+    1.成功---->显示页面
+    2.失败---->返回系统默认的accounts/login/页面
     """
 
     def get(self, request):
+
+        # islogin是我们模拟了一个标记位
+        # islogin = False
+        #
+        # if not islogin:
+        #     return HttpResponse('该用户未登陆,请前往登陆页面')
+        # else:
+        #     return HttpResponse('get/我的订单页面,这个页面必须登陆')
 
         return HttpResponse('get/我的订单页面,这个页面必须登陆')
 
