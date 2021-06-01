@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 # from django.views.generic import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from book.models import BookInfo, CharacterInfo
 
 # Create your views here.
@@ -243,13 +244,30 @@ class LoginView(View):
     2.类视图中的方法是采用Http方法小写来区分不同的请求方式
     """
 
-    def get(self, request):
-
-        return HttpResponse('GET逻辑~')
+    # def get(self, request):
+    #
+    #     return HttpResponse('GET逻辑~')
 
     def post(self, request):
 
         return HttpResponse('POST逻辑~')
+
+
+class MyOrderView(View):
+    """
+    我的订单视图类
+    1.已登陆用户---->可以访问
+    2.未登陆用户---->无法访问，跳转登陆
+
+    """
+
+    def get(self, request):
+
+        return HttpResponse('get/我的订单页面,这个页面必须登陆')
+
+    def post(self, request):
+
+        return HttpResponse('post/我的订单页面,这个页面必须登陆')
 
 # # Method1:insert
 # from book.models import BookInfo
