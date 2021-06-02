@@ -253,6 +253,7 @@ class LoginView(View):
         return HttpResponse('POST逻辑~')
 
 
+# class MyOrderView(View, LoginRequiredMixin):
 class MyOrderView(LoginRequiredMixin, View):
     """
     我的订单视图类
@@ -272,6 +273,10 @@ class MyOrderView(LoginRequiredMixin, View):
     LoginRequiredMixin内部会进行用户是否登陆的判断(登陆默认的admin站点)
     1.成功---->显示页面
     2.失败---->返回系统默认的accounts/login/页面
+
+
+    使用super()可以逐一调用所有的父类方法,并且仅执行一次
+    调用顺序遵循MRO类属性顺序
     """
 
     def get(self, request):
