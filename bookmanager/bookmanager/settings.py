@@ -49,6 +49,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 注册自定义中间件
+    'book.middleware.TestMiddleWare',
 ]
 
 ROOT_URLCONF = 'bookmanager.urls'
@@ -143,6 +145,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_files'),
 ]
 
+<<<<<<< HEAD
 # CACHES = {
 #     'default': {
 #         'BACKEND': 'django_redis.cache.RedisCache',
@@ -154,3 +157,17 @@ STATICFILES_DIRS = [
 # }
 # SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 # SESSION_CACHE_ALIAS = 'default'
+=======
+# 在settings文件中配置django-redis
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
+>>>>>>> 6724ff72766cb3a348ba7e27abd64d2ac436d3fc
